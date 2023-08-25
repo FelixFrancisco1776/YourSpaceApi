@@ -1,5 +1,4 @@
 const {User, Thought} = require('../models');
-const { create } = require('../models/User');
 
 const thoughtController = {
 
@@ -39,17 +38,15 @@ const thoughtController = {
         })
         .then(dbUserData => {
             if (!dbUserData) {
-                res.status(404).json({ message: 'No user found with this id.' });
-                return;
+                return res.status(404).json({ message: 'No user found with this id.' });
             }
-            res.json(dbUserData);
+            res.json({ message: 'Thought created!' });
         }
         )
         .catch(err => {
             console.log(err);
             res.sendStatus(400);
-        }
-        );
+        });
     },
 
     updateThought(req, res) {

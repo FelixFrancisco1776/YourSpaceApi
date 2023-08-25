@@ -42,7 +42,6 @@ const UserSchema = new Schema(
         toJSON: {
             // Including extra stuff like virtuals and getters.
             virtuals: true,
-            getters: true
         },
         // No need for an auto-generated '_id'.
         id: false,

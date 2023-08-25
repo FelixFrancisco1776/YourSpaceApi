@@ -1,5 +1,3 @@
-const moment = require('moment');
-
 const { Schema, Types } = require('mongoose');
 
 const ReactionSchema = new Schema(
@@ -20,7 +18,17 @@ const ReactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            get: (timestamp) => moment(timestamp).format('MMM DD, YYYY [at] hh:mm a')
+            get: function(timestamp) {
+                const options = {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true
+                };
+                return new Intl.DateTimeFormat('en-US', options).format(timestamp);
+            }
         },
     },
     {
